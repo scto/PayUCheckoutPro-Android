@@ -176,7 +176,7 @@ class MainActivity : AppCompatActivity() {
             this,android.R.layout.simple_spinner_item,noteCategory
         )
         noteCategoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        et_custom_note_category_value.adapter = noteCategoryAdapter
+        findViewById<androidx.appcompat.widget.AppCompatSpinner>(R.id.et_custom_note_category_value).adapter = noteCategoryAdapter
     }
 
     private fun setInitalData() {
@@ -271,9 +271,9 @@ class MainActivity : AppCompatActivity() {
             paymenRelatedDetailsHash
 
         var siDetails: PayUSIParams? =null
-        if(switch_si_on_off.isChecked) {
+        if(findViewById<androidx.appcompat.widget.SwitchCompat>(R.id.switch_si_on_off).isChecked) {
             siDetails  = PayUSIParams.Builder()
-                .setIsFreeTrial(sp_free_trial.isChecked)
+                .setIsFreeTrial(findViewById<androidx.appcompat.widget.SwitchCompat>(R.id.sp_free_trial).isChecked)
                 .setBillingAmount(et_billingAmount_value.text.toString())
                 .setBillingCycle(PayUBillingCycle.valueOf(findViewById<androidx.appcompat.widget.AppCompatSpinner>(R.id.et_billingCycle_value).selectedItem.toString()))
                 .setBillingInterval(et_billingInterval_value.text.toString().toInt())
@@ -512,23 +512,23 @@ class MainActivity : AppCompatActivity() {
     private fun getCustomeNoteDetails(): ArrayList<CustomNote>{
         val customNote = ArrayList<CustomNote>()
 
-        if (!(et_custom_note_category_value.selectedItem.toString().equals("NULL") ||et_custom_note_category_value.selectedItem.toString().equals("COMMON")) ) {
+        if (!(findViewById<androidx.appcompat.widget.AppCompatSpinner>(R.id.et_custom_note_category_value).selectedItem.toString().equals("NULL") ||findViewById<androidx.appcompat.widget.AppCompatSpinner>(R.id.et_custom_note_category_value).selectedItem.toString().equals("COMMON")) ) {
             val noteCategory = ArrayList<PaymentType>().also {
-                it.add(PaymentType.valueOf(et_custom_note_category_value.selectedItem.toString()))
+                it.add(PaymentType.valueOf(findViewById<androidx.appcompat.widget.AppCompatSpinner>(R.id.et_custom_note_category_value).selectedItem.toString()))
             }
-            customNote.add(CustomNote(et_custom_note_value.text.toString(),noteCategory))
+            customNote.add(CustomNote(findViewById<EditText>(R.id.et_custom_note_value).text.toString(),noteCategory))
 //                .also {
-//                it.custom_note = et_custom_note_value.text.toString()
+//                it.custom_note = findViewById<EditText>(R.id.et_custom_note_value).text.toString()
 //                it.custom_note_category = ArrayList<PaymentType>().also {
-//                    it.add(PaymentType.valueOf(et_custom_note_category_value.selectedItem.toString()))
+//                    it.add(PaymentType.valueOf(findViewById<androidx.appcompat.widget.AppCompatSpinner>(R.id.et_custom_note_category_value).selectedItem.toString()))
 //                it.add(PaymentType.NB)
 //                it.add(PaymentType.WALLET)
 //                it.add(PaymentType.UPI)
 //                it.add(PaymentType.EMI)
 //                }
 //            })
-        }else if (et_custom_note_category_value.selectedItem.toString().equals("NULL")){
-            customNote.add(CustomNote(et_custom_note_value.text.toString(),null))
+        }else if (findViewById<androidx.appcompat.widget.AppCompatSpinner>(R.id.et_custom_note_category_value).selectedItem.toString().equals("NULL")){
+            customNote.add(CustomNote(findViewById<EditText>(R.id.et_custom_note_value).text.toString(),null))
         }else{
             val noteCategory = ArrayList<PaymentType>().also {
                 it.add(PaymentType.CARD)
@@ -537,7 +537,7 @@ class MainActivity : AppCompatActivity() {
                 it.add(PaymentType.WALLET)
                 it.add(PaymentType.EMI)
             }
-            customNote.add(CustomNote(et_custom_note_value.text.toString(),noteCategory))
+            customNote.add(CustomNote(findViewById<EditText>(R.id.et_custom_note_value).text.toString(),noteCategory))
         }
 
         return customNote;
