@@ -497,7 +497,7 @@ class MainActivity : AppCompatActivity() {
                     + ", merchantResponse : > " + response[PayUCheckoutProConstants.CP_MERCHANT_RESPONSE]
         )
 
-        AlertDialog.Builder(this, R.style.Theme_AppCompat_Light_Dialog_Alert)
+        AlertDialog.Builder(this)
             .setCancelable(false)
             .setMessage(
                 "Payu's Data : " + response.get(PayUCheckoutProConstants.CP_PAYU_RESPONSE) + "\n\n\n Merchant's Data: " + response.get(
