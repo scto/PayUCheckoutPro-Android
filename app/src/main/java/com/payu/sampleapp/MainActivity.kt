@@ -162,13 +162,13 @@ class MainActivity : AppCompatActivity() {
             this, android.R.layout.simple_spinner_item, billingRule
         )
         billingRuleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        et_billingRule_value.adapter = billingRuleAdapter
+        findViewById<androidx.appcompat.widget.AppCompatSpinner>(R.id.et_billingRule_value).adapter = billingRuleAdapter
 
         val billingLimitAdapter : ArrayAdapter<*> = ArrayAdapter<Any?>(
             this, android.R.layout.simple_spinner_item, billingLimit
         )
         billingLimitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        et_billingLimit_value.adapter = billingLimitAdapter
+        findViewById<androidx.appcompat.widget.AppCompatSpinner>(R.id.et_billingLimit_value).adapter = billingLimitAdapter
     }
 
     private fun setCustomeNote(){
@@ -280,8 +280,8 @@ class MainActivity : AppCompatActivity() {
                 .setPaymentStartDate(et_paymentStartDate_value.text.toString())
                 .setPaymentEndDate(et_paymentEndDate_value.text.toString())
                 .setRemarks(et_remarks_value.text.toString())
-                .setBillingLimit(PayuBillingLimit.valueOf(et_billingLimit_value.selectedItem.toString()))
-                .setBillingRule(PayuBillingRule.valueOf(et_billingRule_value.selectedItem.toString()))
+                .setBillingLimit(PayuBillingLimit.valueOf(findViewById<androidx.appcompat.widget.AppCompatSpinner>(R.id.et_billingLimit_value).selectedItem.toString()))
+                .setBillingRule(PayuBillingRule.valueOf(findViewById<androidx.appcompat.widget.AppCompatSpinner>(R.id.et_billingRule_value).selectedItem.toString()))
                 .build()
         }
 
