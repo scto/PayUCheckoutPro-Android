@@ -157,7 +157,7 @@ class MainActivity : AppCompatActivity() {
             billingCycle
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        et_billingCycle_value.adapter = adapter
+        findViewById<androidx.appcompat.widget.AppCompatSpinner>(R.id.et_billingCycle_value).adapter = adapter
         val billingRuleAdapter : ArrayAdapter<*> = ArrayAdapter<Any?>(
             this, android.R.layout.simple_spinner_item, billingRule
         )
@@ -275,7 +275,7 @@ class MainActivity : AppCompatActivity() {
             siDetails  = PayUSIParams.Builder()
                 .setIsFreeTrial(sp_free_trial.isChecked)
                 .setBillingAmount(et_billingAmount_value.text.toString())
-                .setBillingCycle(PayUBillingCycle.valueOf(et_billingCycle_value.selectedItem.toString()))
+                .setBillingCycle(PayUBillingCycle.valueOf(findViewById<androidx.appcompat.widget.AppCompatSpinner>(R.id.et_billingCycle_value).selectedItem.toString()))
                 .setBillingInterval(et_billingInterval_value.text.toString().toInt())
                 .setPaymentStartDate(et_paymentStartDate_value.text.toString())
                 .setPaymentEndDate(et_paymentEndDate_value.text.toString())
