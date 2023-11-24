@@ -27,9 +27,6 @@ import com.payu.paymentparamhelper.PayuConstants
 import com.payu.sampleapp.databinding.ActivityMainBinding
 import com.payu.ui.model.listeners.PayUCheckoutProListener
 import com.payu.ui.model.listeners.PayUHashGenerationListener
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.custome_note.*
-import kotlinx.android.synthetic.main.layout_si_details.*
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -149,9 +146,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializeSIView() {
-        switch_si_on_off.setOnCheckedChangeListener { buttonView, isChecked -> if(isChecked)
-        { layout_si_details.visibility = View.VISIBLE }
-        else { layout_si_details.visibility = View.GONE }
+        findViewById<androidx.appcompat.widget.SwitchCompat>(R.id.switch_si_on_off).setOnCheckedChangeListener { buttonView, isChecked -> if(isChecked)
+        { findViewById<View>(R.id.layout_si_details).visibility = View.VISIBLE }
+        else { findViewById<View>(R.id.layout_si_details).visibility = View.GONE }
         }
 
         val adapter: ArrayAdapter<*> = ArrayAdapter<Any?>(
